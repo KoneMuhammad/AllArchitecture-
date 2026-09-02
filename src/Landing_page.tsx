@@ -1,8 +1,9 @@
 import landingpageimg from './assets/landingpageimg.svg'
-
+import { Octokit } from "octokit";
 
 export function Landing_page(){
 
+    
     return (
         <main className="main">
        <header className="header">
@@ -28,6 +29,14 @@ export function Landing_page(){
 }
 
 async function make_request_to_github_api(e){
+    const octokit = new Octokit({ 
+  auth: 'YOUR-TOKEN'
+});
+
+await octokit.request("GET /repos/{owner}/{repo}/issues", {
+  owner: "octocat",
+  repo: "Spoon-Knife",
+});
     const url  = fix_user_input_to_match_api_path(get_user_input(e))
     
     await fetch(url, {headers: {'X-GitHub-Api-Version': '2026-03-10'}} )
@@ -38,6 +47,7 @@ function fix_user_input_to_match_api_path(userRepository: any): string {
     const updatedinput1 = userRepository.replace(/blob/,"contents/blob")
     const updatedinput2 = updatedinput1.replace(/github.com/, "github.com/repos")
     const githubEndpoint = updatedinput2
+    const urlWithBaseUrlOmitted = updatedinput2.replace()
     console.log(`Final api string is: ${githubEndpoint}`)
     return githubEndpoint
 }
@@ -51,7 +61,5 @@ function get_user_input(e)
    console.log(`User Repository input is: ${userRepository}`)
    return userRepository
 }
-
-//ts syntax
 //types of runtime errors 
 
