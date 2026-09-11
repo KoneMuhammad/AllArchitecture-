@@ -1,10 +1,24 @@
 import landingpageimg from './assets/landingpageimg.svg'
 import { Octokit } from "octokit";
+import MermaidDiagram from "./MermaidDiagram";
+
 
 const octokit = new Octokit();
 
-export function Landing_page() {
+export function Landing_page({
+  diagram,
+  setDiagram
+}: {
+  diagram: string;
+  setDiagram: (value: any) => void;
+})
+ {
 
+               function callbackend(e){
+                sendReadMeToBackend(e,setDiagram)
+               }
+
+    if(diagram == ""){
     return (
         <main className="main">
             <header className="header">
@@ -19,7 +33,7 @@ export function Landing_page() {
                 <img src={landingpageimg} className="headerimg">
                 </img>
             </header>
-            <form style={{ marginTop: "20px" }} onSubmit={make_request_to_github_api}>
+            <form style={{ marginTop: "20px" }} onSubmit={callbackend}>
                 <input className="input" name="github_repository"
                     type="text"
                     placeholder="www.github repo link">
@@ -28,7 +42,11 @@ export function Landing_page() {
         </main>
     )
 }
-//helper functions
+else {
+     return <MermaidDiagram code={diagram} />
+}
+}
+
 
 function get_user_input(e) {
     e.preventDefault();
@@ -63,34 +81,22 @@ async function make_request_to_github_api(e) {
 
     const readMeInformation = result.data.content
 
-    return readMeInformation
+    console.log(`readme information is: ${readMeInformation}`)
 
-    //readme -> send readme to deepseak -> create class -> populate class o2329323 -> paste into request
-    //to kroki, -> kroki responds with image 
+    return readMeInformation
 }
 
-async function getAiResponse() {
+async function sendReadMeToBackend(e, setDiagram: (value:any)=> void ) {
 
-    const aiResponseAsAClass = fetch("")
-    const aiCallResult = await fetch("https://api.deepseek.com/chat/completion", {
-        body: `{"messages": [
-    {
-      "content": "you take this github ReadMe and from it create a class named architecture with the properties 
-      base: string[], backendstuff: string[], glassScreen: string[]
-      ",
-      "role": "system"
-    },
-    {             //{ readMeInformation }
-      "content": "readmeinformation",
-      "role": "user"
-    }
-      ],
- "model": "deepseek-v4-flash"
-    }`,
-    headers: {
-        "Content-Type":"application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer <TOKEN>"
-    }
-     })
+    const readMe = await make_request_to_github_api(e)
+
+    const diagram = await fetch("https://allarchitecturebackend.onrender.com/diagram", {
+        headers: {
+            "Content-Type": "text/plain"
+        },
+        method: "POST",
+        body: readMe
+    })
+
+    setDiagram(diagram);
 }
