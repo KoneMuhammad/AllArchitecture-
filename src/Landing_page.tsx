@@ -2,7 +2,6 @@ import landingpageimg from './assets/landingpageimg.svg'
 import { Octokit } from "octokit";
 import MermaidDiagram from "./MermaidDiagram";
 
-
 const octokit = new Octokit();
 
 export function Landing_page({
@@ -42,6 +41,7 @@ export function Landing_page({
         </main>
     )
 }
+//have other stuff in this new screen 
 else {
      return <MermaidDiagram code={diagram} />
 }
