@@ -41,9 +41,16 @@ export function Landing_page({
         </main>
     )
 }
-//have other stuff in this new screen 
 else {
-     return <MermaidDiagram code={diagram} />
+     return (
+     <main className="main">
+            <header className="header1">
+                <h1 className="h1">
+                    The Architecture
+                </h1>
+              <MermaidDiagram code={diagram} />
+            </header>
+         </main>)
 }
 }
 
