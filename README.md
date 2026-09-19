@@ -1,32 +1,23 @@
-# React + TypeScript + Vite
+# AllArchitecture
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**Find out the architecture of a repository.**
 
-Currently, two official plugins are available:
+AllArchitecture takes a GitHub repository and turns it into an architecture diagram, so you can get a quick idea of how the project is put together.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+## Get started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Just paste in a github Read me From any repository and hit enter**
 
-## Expanding the Oxlint configuration
+--flow--
+GitHub repo README  → Architecture diagram**
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Tech Stack
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+* React
+* TypeScript
+* Mermaid
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Try it
+
+Live: AllArchitecturetation](https://www.bokk.cloud) for the full list of rules and categories.
