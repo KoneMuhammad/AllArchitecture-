@@ -20,4 +20,4 @@ GitHub repo README  → Architecture diagram**
 
 Try it
 
-Live: AllArchitecturetation](https://www.bokk.cloud) for the full list of rules and categories.
+Live: [AllArchitecture](https://www.bokk.cloud)
